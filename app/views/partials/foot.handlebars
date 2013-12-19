@@ -1,0 +1,12 @@
+<script>
+  {{#if clientController}}
+    window.DATA.clientController = "{{clientController}}";
+  {{/if}}
+
+  {{#if clientData}}
+    window.DATA.clientData = {{{clientData}}};
+  {{/if}}
+
+</script>
+
+<script src="/app.js"></script>
