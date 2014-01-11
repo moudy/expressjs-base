@@ -1,7 +1,6 @@
-@import 'normalize.scss';
+@import 'vendor/normalize';
+@import 'mixins/mixins';
 
 body {
-  h1 {
-    color: #444;
-  }
+  background-color: #ddd;
 }
