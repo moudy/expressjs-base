@@ -5,7 +5,10 @@ exports.configure = function (app) {
 
   if ('development' === app.get('env')) {
     app.use(require('./middleware/sass'));
-    app.use('/app.js', require('./middleware/browserify'));
+    app.use('/app.js', require('./middleware/browserify'), {
+      noParse: [] //'jquery', any other modules that don't need to parsed for require
+    , insertGlobals:true // speed things up
+    });
   }
   app.use(express.favicon(path.join(__dirname, '..', 'public/favicon.ico')));
   app.use(express.logger('dev'));

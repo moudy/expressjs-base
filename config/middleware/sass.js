@@ -5,4 +5,5 @@ module.exports = require('node-sass').middleware({
 , dest: path.join(__dirname, '..', '..', 'public')
 , debug: true
 , outputStyle: 'expanded'
+, force: true
 });
