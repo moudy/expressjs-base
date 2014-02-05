@@ -16,8 +16,8 @@
     "clean-css": "~2.0.6",
     "uglify-js": "~2.4.8",
     "browserify": "~3.19.1",
-    "require-directory": "~1.2.0",
-    "nodemon": "~1.0.13"
+    "nodemon": "~1.0.13",
+    "node-require-directory": "~1.0.2"
   },
   "devDependencies": {
     "node-pow": "0.0.2",
