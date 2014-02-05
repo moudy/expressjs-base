@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo "Set LOCAL_DB_NAME variable to sync, exiting..."; exit
+# LOCAL_DB_NAME=appName
+
+# Assuming you are delpoying to Heroku and using the MongoLab add-on
+MONGOLAB_URI=$(heroku config | grep MONGOLAB_URI | awk '{ print $2}' | awk -F// '{print $2}')
+
+# Extract a bunch of info from the URI
+HEROKU_APP_NAME=$(echo "$MONGOLAB_URI" | awk -F: '{print $1}')
+DB_PASSWORD=$(echo "$MONGOLAB_URI" | awk -F: '{print $2}' | awk -F. '{print $1}' | awk -F@ '{print $1}')
+DB_USERNAME="$HEROKU_APP_NAME"
+DB_HOST=$(echo "$MONGOLAB_URI" | awk -F@ '{print $2}' | awk -F/ '{print $1}')
+
+# Pull down the remote data
+mongodump -h "$DB_HOST" -d "$HEROKU_APP_NAME" -u "$DB_USERNAME" -p "$DB_PASSWORD" -o tmp/
+
+# Restore local DB with remote data
+mongorestore -h localhost --drop -d "$LOCAL_DB_NAME" tmp/"$HEROKU_APP_NAME"
