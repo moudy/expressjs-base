@@ -1,8 +1,8 @@
 //var mongoose = require('mongoose');
 
-//var mongoUri = exports.mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/vice_hd_development';
+//var mongoUri = exports.mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/my_app_development';
 
-exports.configure = function () {
+exports.connect = function () {
   //if ('development' === app.get('env')) mongoose.set('debug', true);
   //mongoose.connect(mongoUri);
   //var db = mongoose.connection;
