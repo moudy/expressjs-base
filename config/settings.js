@@ -3,7 +3,7 @@ var path = require('path');
 var view = require('./view');
 
 exports.configure = function (app) {
-  app.set('port', process.env.PORT || 3012);
+  app.set('port', process.env.PORT || 3999);
   app.set('title', 'app-name');
   app.set('views', path.join(__dirname, '..', 'app', 'views'));
   app.engine('.hbs', view.engine);

@@ -10,7 +10,7 @@ function start () {
   require('./config/db').connect();
 
   app.listen(app.get('port'), function(){
-    console.log('Server listening', 'port:'+ app.get('port'), 'environment:'+app.get('env'));
+    console.log('"'+app.get('host')+'" running in "'+app.get('env')+'" on port '+app.get('port'));
   });
 }
 
