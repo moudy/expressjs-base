@@ -1,6 +1,6 @@
 var requireDirectory = require('node-require-directory');
-var controllers = requireDirectory('app/controllers');
 
 exports.configure = function (app) {
+  var controllers = requireDirectory('app/controllers');
   app.get('/', controllers.pages.index);
 };

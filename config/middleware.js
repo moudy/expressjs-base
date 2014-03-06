@@ -10,6 +10,7 @@ exports.configure = function (app) {
     , insertGlobals:true // speed things up
     });
   }
+
   app.use(express.favicon(path.join(__dirname, '..', 'public/favicon.ico')));
   app.use(express.logger('dev'));
   app.use(express.json());
@@ -27,8 +28,6 @@ exports.configure = function (app) {
 
   if ('development' === app.get('env')) {
     app.use(express.errorHandler());
-    //var mongoose = require('mongoose');
-    //mongoose.set('debug', true);
   }
 
 };
