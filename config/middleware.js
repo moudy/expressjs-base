@@ -1,33 +1,31 @@
 var express = require('express');
+var assets = require('./middleware/assets');
 var path = require('path');
 
 exports.configure = function (app) {
+  var rootPath = path.join(__dirname, '..');
 
   if ('development' === app.get('env')) {
-    app.use(require('./middleware/sass'));
-    app.use('/app.js', require('./middleware/browserify'), {
-      noParse: [] //'jquery', any other modules that don't need to parsed for require
-    , insertGlobals:true // speed things up
-    });
+    app.use(assets);
+  } else {
+    app.use(express.static(path.join(rootPath, 'assets')));
   }
 
-  app.use(express.favicon(path.join(__dirname, '..', 'public/favicon.ico')));
-  app.use(express.logger('dev'));
-  app.use(express.json());
-  app.use(express.urlencoded());
-  app.use(express.methodOverride());
+  app.use(require('static-favicon')(path.join(rootPath, 'public/favicon.ico')));
+  app.use(express.static(path.join(rootPath, 'public')));
 
-  app.use(function (req, res, next) {
-    res.locals.ENV = {};
-    res.locals.ENV[app.get('env')] = true;
-    next();
-  });
-
-  app.use(express.static(path.join(__dirname, '..', 'public')));
-  app.use(app.router);
+  app.use(require('body-parser')());
+  app.use(require('cookie-parser')());
+  app.use(require('method-override')());
 
   if ('development' === app.get('env')) {
-    app.use(express.errorHandler());
+    app.use(require('morgan')('dev'));
+  }
+
+  app.use(require('./middleware/locals'));
+
+  if ('development' === app.get('env')) {
+    app.use(require('errorhandler')());
   }
 
 };

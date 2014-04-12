@@ -5,24 +5,32 @@
   "scripts": {
     "start": "forever app.js",
     "dev": "nodemon --ignore tmp/ --ignore node_modules/ --ignore public/ --ignore app/assets/ app.js",
-    "build-js": "browserify app/assets/js/app.js | uglifyjs -mc > public/app.js",
-    "build-css": "mkdir -p tmp && node-sass app/assets/css/app.scss tmp/app.css && cleancss tmp/app.css > public/app.css",
-    "postinstall": "npm run build-js & npm run build-css"
+    "postinstall": "rm -rf ./assets && broccoli build assets"
   },
   "dependencies": {
-    "express": "3.4.4",
-    "express3-handlebars": "~0.5.0",
-    "node-sass": "~0.8.0",
-    "clean-css": "~2.0.6",
-    "uglify-js": "~2.4.8",
-    "browserify": "~3.19.1",
-    "nodemon": "~1.0.13",
-    "node-require-directory": "~1.0.2",
-    "mongoose": "^3.8.8"
+    "cookie-parser": "^1.0.1",
+    "body-parser": "^1.0.1",
+    "express": "^4.0.0",
+    "mongoose": "^3.8.8",
+    "method-override": "^1.0.0",
+    "morgan": "^1.0.0",
+    "broccoli": "^0.9.0",
+    "broccoli-uglify-js": "^0.1.3",
+    "broccoli-merge-trees": "^0.1.3",
+    "broccoli-sass": "^0.1.3",
+    "broccoli-clean-css": "^0.1.5",
+    "broccoli-browserify": "0.0.1",
+    "static-favicon": "^1.0.2",
+    "errorhandler": "^1.0.0",
+    "express3-handlebars": "^0.5.0",
+    "node-require-directory": "^1.0.2",
+    "supertest": "^0.10.0"
   },
   "devDependencies": {
     "node-pow": "0.0.2",
-    "browserify-middleware": "~2.2.0"
+    "nodemon": "^1.0.17",
+    "chai": "^1.9.1",
+    "mocha": "^1.18.2"
   },
   "engines": {
     "node": "0.10.x",

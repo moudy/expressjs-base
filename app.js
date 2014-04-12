@@ -12,6 +12,11 @@ if (!module.parent) {
   require('./config/db').connect(app);
 
   app.listen(app.get('port'), function(){
-    console.log('"%s" running in "%s" on port %d', app.get('host'), app.get('env'), app.get('port'));
+    console.log(
+    '"http://%s" running in "%s" on port %d'
+    , app.get('host')
+    , app.get('env')
+    , app.get('port')
+    );
   });
 }
