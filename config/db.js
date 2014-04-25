@@ -2,9 +2,15 @@ var mongoose = require('mongoose');
 
 exports.connect = function (app) {
   if ('development' === app.get('env')) mongoose.set('debug', true);
-  mongoose.connect(app.get('MONGO_URI'));
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'db connection error'));
-  db.on('open', console.error.bind(console, 'db connection open'));
+  var db = mongoose.connect(app.get('MONGO_URI')).connection;
+
+  db.on('error', function () {
+    console.log('MongoDB connection error', app.get('MONGO_URI'), arguments);
+  });
+
+  db.on('open', function () {
+    console.log('MongoDB connection open at:', app.get('MONGO_URI'));
+  });
+
   return db;
 };
