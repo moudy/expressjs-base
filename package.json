@@ -24,7 +24,8 @@
     "errorhandler": "^1.0.0",
     "express3-handlebars": "^0.5.0",
     "node-require-directory": "^1.0.2",
-    "supertest": "^0.10.0"
+    "supertest": "^0.10.0",
+    "broccoli-cli": "0.0.1"
   },
   "devDependencies": {
     "node-pow": "0.0.2",

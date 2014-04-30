@@ -8,7 +8,7 @@ exports.configure = function (app) {
   if ('development' === app.get('env')) {
     app.use(assets);
   } else {
-    app.use(express.static(path.join(rootPath, 'assets')));
+    app.use('/assets', express.static(path.join(rootPath, 'assets')));
   }
 
   app.use(require('static-favicon')(path.join(rootPath, 'public/favicon.ico')));
