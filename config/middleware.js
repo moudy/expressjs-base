@@ -11,7 +11,7 @@ exports.configure = function (app) {
     app.use('/assets', express.static(path.join(rootPath, 'assets')));
   }
 
-  app.use(require('static-favicon')(path.join(rootPath, 'public/favicon.ico')));
+  app.use(require('serve-favicon')(path.join(rootPath, 'public/favicon.ico')));
   app.use(express.static(path.join(rootPath, 'public')));
 
   app.use(require('body-parser')());
