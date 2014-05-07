@@ -2,7 +2,7 @@ var express = require('express');
 var assets = require('./middleware/assets');
 var path = require('path');
 
-exports.configure = function (app) {
+module.exports = function (app) {
   var rootPath = path.join(__dirname, '..');
 
   if ('development' === app.get('env')) {

@@ -1,4 +1,4 @@
-exports.configure = function (app) {
+module.exports = function (app) {
   var env = process.env;
   app.set('port', env.PORT);
 

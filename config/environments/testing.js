@@ -1,4 +1,4 @@
-exports.configure = function (app) {
+module.exports = function (app) {
   console.warn('Configure "%s"', __filename);
   // app.set('port', <PORT>);
   // app.set('MONGO_URI', app-name-testing);

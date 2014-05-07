@@ -4,7 +4,7 @@ var app = exports.app = require('express')();
 [ 'settings'
 , 'middleware'
 , 'routes'].forEach(function (i) {
-  require('./config/'+i).configure(app);
+  require('./config/'+i)(app);
 });
 
 // Only start app if it's not required by another module (i.e. testing or mounting)
