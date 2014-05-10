@@ -7,6 +7,7 @@ var assets = new rack.Rack([
   new rack.StaticAssets({
     urlPrefix: '/assets'
   , dirname: rootPath + '/assets'
+  , gzip: true
   })
 ]);
 
