@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var package = require('./package');
+
+var dependencies = Object.keys(package.dependencies);
+console.log(dependencies.join(' '));
+process.exit();
