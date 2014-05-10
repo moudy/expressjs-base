@@ -24,7 +24,7 @@ module.exports = function (app) {
 
   // Load initializers
   fs.readdirSync(initializersPath).forEach(function (file) {
-    require(path.join(initializersPath, file))();
+    require(path.join(initializersPath, file))(app);
   });
 
 };

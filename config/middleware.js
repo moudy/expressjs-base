@@ -4,9 +4,6 @@ var path = require('path');
 module.exports = function (app) {
   var rootPath = path.join(__dirname, '..');
 
-  //var b = require('../Brocfile');
-  //console.log(b.inputTrees);
-
   if ('development' === app.get('env')) {
     app.use(require('./middleware/assets-development'));
   } else {
