@@ -1,14 +1,16 @@
 var express = require('express');
-var assets = require('./middleware/assets');
 var path = require('path');
 
 module.exports = function (app) {
   var rootPath = path.join(__dirname, '..');
 
+  //var b = require('../Brocfile');
+  //console.log(b.inputTrees);
+
   if ('development' === app.get('env')) {
-    app.use(assets);
+    app.use(require('./middleware/assets-development'));
   } else {
-    app.use('/assets', express.static(path.join(rootPath, 'assets')));
+    app.use(require('./middleware/assets-production'));
   }
 
   app.use(require('serve-favicon')(path.join(rootPath, 'public/favicon.ico')));
