@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "asset-rack": "git://github.com/johngeorgewright/asset-rack.git#e00df32f65505d00708f67dafe616c536c47b6f7",
-    "body-parser": "^1.0.2",
+    "body-parser": "^1.1.2",
     "broccoli": "^0.12.0",
     "broccoli-browserify": "^0.1.0",
     "broccoli-clean-css": "^0.1.5",
