@@ -32,6 +32,7 @@
     "serve-favicon": "^2.0.0"
   },
   "devDependencies": {
+    "broccoli-middleware": "0.0.1",
     "chai": "^1.9.1",
     "mocha": "^1.18.2",
     "node-pow": "0.0.2",

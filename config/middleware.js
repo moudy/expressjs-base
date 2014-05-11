@@ -5,7 +5,7 @@ module.exports = function (app) {
   var rootPath = path.join(__dirname, '..');
 
   if ('development' === app.get('env')) {
-    app.use(require('./middleware/assets-development'));
+    app.use(require('broccoli-middleware'));
   } else {
     app.use(require('./middleware/assets-production'));
   }
