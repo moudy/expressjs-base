@@ -5,7 +5,7 @@
   "scripts": {
     "start": "forever app.js",
     "dev": "nodemon --ignore tmp/ --ignore node_modules/ --ignore public/ --ignore app/assets/ app.js",
-    "postinstall": "rm -rf ./assets && broccoli build assets"
+    "postinstall": "rm -rf ./assets && broccoli build assets && ./scripts/deploy-assets"
   },
   "dependencies": {
     "asset-rack": "git://github.com/johngeorgewright/asset-rack.git#e00df32f65505d00708f67dafe616c536c47b6f7",

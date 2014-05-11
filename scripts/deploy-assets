@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+require('../config/assets').deploy({
+  provider: 'amazon'
+, container: 'expressjs-base'
+, accessKey: process.env.AWS_ACCESS_KEY
+, secretKey: process.env.AWS_SECRET_KEY
+}, function(error) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Assets Deployed');
+  }
+});

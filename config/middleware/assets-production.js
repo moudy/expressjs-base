@@ -1,14 +1,1 @@
-var path = require('path');
-var rack = require('asset-rack');
-
-var rootPath = path.join(__dirname, '..', '..');
-
-var rack = new rack.Rack([
-  new rack.StaticAssets({
-    urlPrefix: '/assets'
-  , dirname: rootPath + '/assets'
-  , gzip: true
-  })
-]);
-
-module.exports = rack.handle;
+module.exports = require('../assets').handle;
