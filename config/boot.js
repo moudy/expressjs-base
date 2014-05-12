@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var express = require('express');
 var view = require('./view');
 
 module.exports = function (app) {
@@ -26,6 +27,31 @@ module.exports = function (app) {
   fs.readdirSync(initializersPath).forEach(function (file) {
     require(path.join(initializersPath, file))(app);
   });
+
+
+  // Middleware
+
+  if ('development' === app.get('env')) {
+    // Use Broccoli for serving and bulding assets in development (configured in Brocfile.js)
+    app.use(require('broccoli-middleware'));
+  } else {
+    // Use asset-rack to fingerprint when not in development
+    app.use(require('./assets').handle);
+  }
+
+  app.use(require('serve-favicon')(path.join(rootPath, 'public/favicon.ico')));
+  app.use(express.static(path.join(rootPath, 'public')));
+  app.use(require('body-parser')());
+  app.use(require('cookie-parser')());
+  app.use(require('method-override')());
+  app.use(require('./middleware/locals'));
+
+  if ('development' === app.get('env')) {
+    app.use(require('morgan')('dev'));
+    app.use(require('errorhandler')());
+  }
+
+  app.use(require('./router'));
 
 };
 

@@ -1,11 +1,5 @@
 var app = exports.app = require('express')();
-
-// Setup Application
-[ 'settings'
-, 'middleware'
-, 'routes'].forEach(function (i) {
-  require('./config/'+i)(app);
-});
+require('./config/boot')(app);
 
 // Only start app if it's not required by another module (i.e. testing or mounting)
 if (!module.parent) {
