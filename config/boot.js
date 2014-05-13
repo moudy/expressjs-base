@@ -12,7 +12,7 @@ module.exports = function (app) {
   var environmentPath = path.join(configPath, 'environments', app.get('environment'));
   var initializersPath = path.join(configPath, 'initializers');
 
-  console.warn('Configure "%s"', __filename);
+  console.warn('Configure `title` in "%s"', __filename);
   app.set('title', 'expressjs-base');
 
   // Setup view path and engine
