@@ -11,8 +11,8 @@ var css = 'app/assets/css';
 var js = 'app/assets/js';
 
 var outputs = {
-  css: (env.production ? 'app.css' : 'assets/app.css')
-, js: (env.production ? 'app.js' : 'assets/app.js')
+  css: 'assets/app.css'
+, js: 'assets/app.js'
 };
 
 var appCss = compileSass([css], 'app.scss', outputs.css);
