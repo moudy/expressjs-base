@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'testing';
+
 var app       = require('../app').app;
 var chai      = require('chai');
 var mongoose  = require('mongoose');

@@ -8,6 +8,7 @@ module.exports = PagesIndexRoute;
 
 var p = PagesIndexRoute.prototype;
 
+
 p.model = function () {
   return {foo: 'Hello'};
 };
