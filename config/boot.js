@@ -33,7 +33,7 @@ module.exports = function (app) {
 
   if ('development' === app.get('env')) {
     // Use Broccoli for serving and bulding assets in development (configured in Brocfile.js)
-    app.use(require('broccoli-middleware'));
+    app.use('/assets', require('broccoli-middleware'));
   } else {
     // Use asset-rack to fingerprint when not in development
     app.use(require('./assets').handle);

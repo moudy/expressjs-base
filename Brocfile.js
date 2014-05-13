@@ -13,8 +13,8 @@ var css = 'app/assets/css';
 var js = 'app/assets/js';
 
 // Output files
-var APP_JS = 'assets/app.js';
-var APP_CSS = 'assets/app.css';
+var APP_JS = 'app.js';
+var APP_CSS = 'app.css';
 
 var appCss = compileSass([css], 'app.scss', APP_CSS);
 
