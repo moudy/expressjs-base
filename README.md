@@ -38,7 +38,7 @@ Views are located in `app/views`. [express3-handlebars](https://github.com/ericf
 SASS + Browserify. Assets are served using [Broccoli](https://github.com/broccolijs/broccoli) as middleware. See `Brocfile.js` for configuration.
 
 ### Assets (production)
-A postinstall script builds assets into `assets/` using [Broccoli](https://github.com/broccolijs/broccoli). They are then served and fingerprinted by [Asset Rack](https://github.com/johngeorgewright/asset-rack.git#e00df32f65505d00708f67dafe616c536c47b6f7). You can optionally provide some AWS credentials as environment variables and `script/deploy-assets` will deploy the assets to an S3 bucket. Make sure to specify the bucketname and change the asset host in `config/environments/production.js`. The `asset-url` handlebars helper (in `lib/handlebars-helpers.js`) takes care of the url re-writing based on the asset host.
+A postinstall script builds fingerprinted and gziped assets into `assets/` using [Broccoli](https://github.com/broccolijs/broccoli). You can optionally provide some AWS credentials as environment variables and `script/deploy-assets` will deploy the assets to an S3 bucket. Make sure to specify the bucketname and change the asset host in `config/environments/production.js`. The `asset-url` handlebars helper (in `lib/handlebars-helpers.js`) takes care of the url re-writing based on the asset host and fingerprint.
 
 ### Testing
 A basic starting point for mocha tests in `test/`
