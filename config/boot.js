@@ -35,7 +35,7 @@ module.exports = function (app) {
 
   // Middleware
 
-  if ('development' !== app.get('env')) {
+  if ('development' === app.get('env')) {
     // Use Broccoli for serving and bulding assets in development (configured in Brocfile.js)
     app.use('/assets', require('broccoli-middleware'));
   }
