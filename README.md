@@ -32,7 +32,7 @@ module.exports = projectRouter.map(function () {
 ```
 
 ### Views
-Views are located in `app/views`. [express3-handlebars](https://github.com/ericf/express3-handlebars) is used as the view engine. Despite it's name it work fine with Express 4. The view engine is configured in `config/view`. Handlebars is passed into the express3-handlebars module so you can be sure which version of handlebars you are using. This can be important if you also want to use handlebars on the client.
+Views are located in `app/views`. [express3-handlebars](https://github.com/ericf/express3-handlebars) is used as the view engine. Despite it's name it works fine with Express 4. The view engine is configured in `config/view`. Handlebars is passed into the express3-handlebars module so you can be sure which version of handlebars you are using. This can be important if you also want to use handlebars on the client.
 
 ### Assets (development)
 SASS + Browserify. Assets are served using [Broccoli](https://github.com/broccolijs/broccoli) as middleware. See `Brocfile.js` for configuration.
