@@ -17,20 +17,28 @@ var client = s3.createClient({
   }
 });
 
-var params = {
-  localDir: 'public/assets'
-, s3Params: {
-    Bucket: 'expressjs-base'
-  , Prefix: 'assets/'
-  }
-};
+var fs = require('fs');
+var path = require('path');
 
-var uploader = client.uploadDir(params);
+function upload (filename) {
+  var file = path.join('public/assets', filename);
 
-uploader.on('error', function(err) {
-  console.error('Error uploading  assets:', err.stack);
-});
+  var params = {
+     localFile: file
+  ,  s3Params: {
+       Bucket: 'expressjs-base'
+    ,  Key: 'assets/'+filename
+    }
+  };
 
-uploader.on('end', function() {
-  console.log('Done uploading assets');
-});
+  if (filename.match(/gz^/)) params.s3Params.ContentEncoding = 'gzip';
+  if (filename.match(/(css|css.gz)$/)) params.s3Params.ContentType = 'text/css';
+  if (filename.match(/(js|js.gz)$/)) params.s3Params.ContentType = 'text/javascript';
+
+  var uploader = client.uploadFile(params);
+  uploader.on('error', function(err) { console.error('Error uploading asset:', err.stack); });
+  uploader.on('end', function() { console.log('Done uploading asset:', filename); });
+}
+
+fs.readdirSync('public/assets').forEach(upload);
+
