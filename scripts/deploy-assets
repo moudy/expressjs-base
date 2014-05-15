@@ -31,7 +31,7 @@ function upload (filename) {
     }
   };
 
-  if (filename.match(/gz^/)) params.s3Params.ContentEncoding = 'gzip';
+  if (filename.match(/gz$/)) params.s3Params.ContentEncoding = 'gzip';
   if (filename.match(/(css|css.gz)$/)) params.s3Params.ContentType = 'text/css';
   if (filename.match(/(js|js.gz)$/)) params.s3Params.ContentType = 'text/javascript';
 
