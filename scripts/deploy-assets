@@ -14,26 +14,23 @@ var client = s3.createClient({
 , s3Options: {
     accessKeyId: process.env.AWS_ACCESS_KEY
   , secretAccessKey: process.env.AWS_SECRET_KEY
-  // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
   }
 });
 
 var params = {
-  localDir: "public/assets",
-  s3Params: {
-    Bucket: "expressjs-base",
-    //Prefix: "some/remote/dir/",
-    // other options supported by putObject, except Body and ContentLength.
-    // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property
-  },
+  localDir: 'public/assets'
+, s3Params: {
+    Bucket: 'expressjs-base'
+  , Prefix: 'assets/'
+  }
 };
 
 var uploader = client.uploadDir(params);
 
 uploader.on('error', function(err) {
-  console.error("Error uploading  assets:", err.stack);
+  console.error('Error uploading  assets:', err.stack);
 });
 
 uploader.on('end', function() {
-  console.log("Done uploading assets");
+  console.log('Done uploading assets');
 });
