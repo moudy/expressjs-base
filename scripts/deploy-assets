@@ -26,14 +26,16 @@ function upload (filename) {
   var params = {
      localFile: file
   ,  s3Params: {
-       Bucket: 'expressjs-base'
-    ,  Key: 'assets/'+filename
+      Bucket: 'expressjs-base'
+    , Key: 'assets/'+filename
+    , ACL: 'public-read'
     }
   };
 
   if (filename.match(/gz$/)) params.s3Params.ContentEncoding = 'gzip';
   if (filename.match(/(css|css.gz)$/)) params.s3Params.ContentType = 'text/css';
   if (filename.match(/(js|js.gz)$/)) params.s3Params.ContentType = 'text/javascript';
+  if (filename.indexOf('-') > -1) params.s3Params.CacheControl = 'public, max-age='+(60*60*24*365);
 
   var uploader = client.uploadFile(params);
   uploader.on('error', function(err) { console.error('Error uploading asset:', err.stack); });
