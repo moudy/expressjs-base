@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var view = require('./view');
+var projectRouter = require('project-router');
 
 module.exports = function (app) {
   // Make sure app has environment
@@ -63,7 +64,7 @@ module.exports = function (app) {
     app.use(require('errorhandler')());
   }
 
-  app.use(require('./router'));
+  app.use(projectRouter.map(require('./routes')));
 
 };
 

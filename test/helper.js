@@ -1,9 +1,11 @@
 process.env.NODE_ENV = 'testing';
 
-var app       = require('../app').app;
-var chai      = require('chai');
-var mongoose  = require('mongoose');
-var clearDB   = require('mocha-mongoose')(app.get('MONGO_URI'));
+var app      = require('../app').app;
+var chai     = require('chai');
+var mongoose = require('mongoose');
+var clearDB  = require('mocha-mongoose')(app.get('MONGO_URI'));
+var db       = require('../config/db');
+
 global.expect = chai.expect;
 
 global.resetDB = function (done) {

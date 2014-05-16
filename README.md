@@ -21,14 +21,12 @@ Remember to run `heroku config:set NODE_ENV=production`.
 4. Start app with `app.listen()`
 
 ### Routing
-Routes are defined in `config/router.js`. See [Project Router](https://github.com/moudy/project-router) for more info.
+Routes are defined in `config/routes.js`. See [Project Router](https://github.com/moudy/project-router) for more info.
 
 ```
-var projectRouter = require('project-router');
-
-module.exports = projectRouter.map(function () {
+module.exports = function () {
   this.get('/', 'pages/index');
-});
+};
 ```
 
 ### Views
