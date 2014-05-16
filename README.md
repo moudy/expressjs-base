@@ -7,7 +7,8 @@ cd new-project
 rm -rf .git
 npm install
 ```
-Remember to run `heroku config:set NODE_ENV=production`.
+
+[Live example on Heroku](http://expressjs-base.herokuapp.com/). Remember to run `heroku config:set NODE_ENV=production` when deploying fo the first time.
 
 ### App Initialization
 1. `app.js` is the entery point for the app. The Express app is created here
