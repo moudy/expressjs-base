@@ -9,6 +9,7 @@ var browserify = require('broccoli-browserify');
 var cleanCSS = require('broccoli-clean-css');
 var fingerprint = require('broccoli-fingerprint');
 var gzip = require('broccoli-gzip');
+var base64CSS = require('broccoli-base64-css');
 
 // Asset trees
 var css = 'app/assets/css';
@@ -20,6 +21,7 @@ var APP_JS = 'app.js';
 var APP_CSS = 'app.css';
 
 var appCss = sass([css], 'app.scss', APP_CSS);
+appCss = base64CSS(appCss);
 
 var appJs = browserify(js, {
   entries: ['./app.js']
