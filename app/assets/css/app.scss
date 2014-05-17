@@ -2,6 +2,7 @@
 @import 'mixins/mixins';
 
 body {
-  background-color: #fdfdfd;
-  background-image: url('/sun.png');
+  text-align: center;
+  padding: 100px;
+  background: url('/sun.png') center 60px no-repeat;
 }
