@@ -10,6 +10,7 @@
   "dependencies": {
     "body-parser": "^1.2.0",
     "broccoli": "^0.12.0",
+    "broccoli-base64-css": "0.0.1",
     "broccoli-browserify": "^0.1.0",
     "broccoli-clean-css": "^0.1.5",
     "broccoli-cli": "0.0.1",
