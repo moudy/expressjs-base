@@ -34,7 +34,7 @@ module.exports = function () {
 Views are located in `app/views`. [express3-handlebars](https://github.com/ericf/express3-handlebars) is used as the view engine. Despite it's name it works fine with Express 4. The view engine is configured in `config/view`. Handlebars is passed into the express3-handlebars module so you can be sure which version of handlebars you are using. This can be important if you also want to use handlebars on the client.
 
 ### Assets (development)
-SASS + Browserify. Assets are served using [Broccoli](https://github.com/broccolijs/broccoli) as middleware. See `Brocfile.js` for configuration.
+SASS + Browserify. Images referenced in CSS are converted to Base64 strings. Assets are served using [Broccoli](https://github.com/broccolijs/broccoli) as middleware. See `Brocfile.js` for configuration.
 
 ### Assets (production)
 A postinstall script builds fingerprinted and gziped assets into `assets/` using [Broccoli](https://github.com/broccolijs/broccoli). You can optionally provide some AWS credentials as environment variables and `script/deploy-assets` will deploy the assets to an S3 bucket. Make sure to specify the bucketname and change the asset host in `config/environments/production.js`. The `asset-url` handlebars helper (in `lib/handlebars-helpers.js`) takes care of the url re-writing based on the asset host and fingerprint.
