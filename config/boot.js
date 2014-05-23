@@ -1,8 +1,9 @@
 var fs = require('fs');
 var path = require('path');
 var express = require('express');
-var view = require('./view');
 var projectRouter = require('project-router');
+var view = require('./view');
+var logger = require('../lib/logger');
 
 module.exports = function (app) {
   // Make sure app has environment
@@ -18,7 +19,7 @@ module.exports = function (app) {
   app.locals.ENV[app.get('env')] = true;
   app.set('ASSETS', fs.readdirSync(assetsPath));
 
-  console.warn('Configure `title` in "%s"', __filename);
+  logger.warn('Configure `title` in "%s"', __filename);
   app.set('title', 'expressjs-base');
 
   // Setup view path and engine
