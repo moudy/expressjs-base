@@ -29,7 +29,7 @@ var appJs = browserify(js, {
 , bundle: {debug: !env.production}
 });
 
-if (env.production) {
+if (true || env.production) {
   appJs = uglifyJS(appJs);
   appJs = fingerprint(appJs);
   appJs = gzip(appJs, {extensions: ['js'], keepUncompressed: true});

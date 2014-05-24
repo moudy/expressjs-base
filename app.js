@@ -1,6 +1,11 @@
 var logger = require('./lib/logger');
 var app = exports.app = require('express')();
-require('./config/boot')(app);
+
+try {
+  require('./config/boot')(app);
+} catch(e) {
+  logger.error(e.message, e);
+}
 
 // Only start app if it's not required by another module (i.e. testing or mounting)
 if (!module.parent) {
