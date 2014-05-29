@@ -44,6 +44,7 @@
     "mongodb": "^1.4.4",
     "node-pow": "0.0.2",
     "nodemon": "^1.0.19",
+    "project-router-viewer": "0.0.3",
     "supertest": "^0.13.0"
   },
   "engines": {

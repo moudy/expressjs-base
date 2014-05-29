@@ -65,7 +65,13 @@ module.exports = function (app) {
     app.use(require('errorhandler')());
   }
 
-  app.use(projectRouter.map(require('./routes')));
+  var router = projectRouter.map(require('./routes'));
+
+  if ('development' === app.get('env')) {
+    app.use('/routes', require('project-router-viewer')(router));
+  }
+
+  app.use(router);
 
 };
 
