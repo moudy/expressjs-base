@@ -32,6 +32,7 @@
     "morgan": "^1.0.0",
     "node-require-directory": "^1.0.2",
     "project-router": "^0.1.5",
+    "project-router-viewer": "0.0.3",
     "s3": "^1.1.0",
     "serve-favicon": "^2.0.0",
     "winston": "^0.7.3"
@@ -44,7 +45,6 @@
     "mongodb": "^1.4.4",
     "node-pow": "0.0.2",
     "nodemon": "^1.0.19",
-    "project-router-viewer": "0.0.3",
     "supertest": "^0.13.0"
   },
   "engines": {

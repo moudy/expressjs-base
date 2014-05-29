@@ -67,9 +67,7 @@ module.exports = function (app) {
 
   var router = projectRouter.map(require('./routes'));
 
-  if ('development' === app.get('env')) {
-    app.use('/routes', require('project-router-viewer')(router));
-  }
+  app.use('/routes', require('project-router-viewer')(router));
 
   app.use(router);
 
