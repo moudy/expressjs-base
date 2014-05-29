@@ -31,7 +31,7 @@
     "mongoose": "^3.8.11",
     "morgan": "^1.0.0",
     "node-require-directory": "^1.0.2",
-    "project-router": "^0.1.2",
+    "project-router": "^0.1.5",
     "s3": "^1.1.0",
     "serve-favicon": "^2.0.0",
     "winston": "^0.7.3"
