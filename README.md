@@ -12,12 +12,13 @@ npm install
 
 ### App Initialization
 1. `app.js` is the entery point for the app. The Express app is created here
-2. `config/boot.js` gets called passing in app instance
-    1. Some basic settings are added to app (title, view engine, etc.)
-    2. `config/environments/<environment>.js` file is called to set environment specific settings like port and database uri
+2. In development/testing environments [dotenv](https://github.com/scottmotte/dotenv) loads `.env.development` and `.env.testing`
+3. `config/boot.js` gets called passing in app instance
+    1. Some basic settings are added to app (port, title, view engine, etc.)
+    2. `config/environments/<environment>.js` file is called to set any addtins environment specific settings
     3. `config/initializers/*` are called. This is where you can add other setup code like passport configuration
     4. Some basic middleware is defined
-    5. Use `config/router.js` as middleware
+    5. Map `config/routes.js` and use router as middleware
 3. connect to Database by requiring `config/db.js`
 4. Start app with `app.listen()`
 
