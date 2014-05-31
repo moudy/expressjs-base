@@ -1,5 +1,5 @@
 // Remote env variables should be set on server
-if ('production' !== process.env.NODE_ENV || 'staging' !== process.env.NODE_ENV) {
+if ('production' !== process.env.NODE_ENV && 'staging' !== process.env.NODE_ENV) {
   console.warn('Set dev/testing env variables in ./.env.(development|testing)');
   require('dotenv').load();
 }
