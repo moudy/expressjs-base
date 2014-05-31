@@ -6,6 +6,8 @@ var view = require('./view');
 var logger = require('../lib/logger');
 
 module.exports = function (app) {
+  var env = process.env;
+
   // Make sure app has environment
   app.set('environment', process.env.NODE_ENV || 'development');
 
@@ -21,6 +23,9 @@ module.exports = function (app) {
 
   logger.warn('Configure `title` in "%s"', __filename);
   app.set('title', 'expressjs-base');
+  app.set('port', env.PORT);
+  app.set('ASSET_HOST', env.ASSET_HOST);
+  app.set('host', env.HOST);
 
   // Setup view path and engine
   app.set('views', path.join(rootPath, 'app', 'views'));
