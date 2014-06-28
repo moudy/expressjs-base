@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var express = require('express');
+var bodyParser    = require('body-parser');
 var projectRouter = require('project-router');
 var view = require('./view');
 var logger = require('../lib/logger');
@@ -14,7 +15,6 @@ module.exports = function (app) {
   var rootPath = path.join(__dirname, '..');
   var assetsPath = path.join(rootPath, 'public', 'assets');
   var configPath = path.join(rootPath, 'config');
-  var environmentPath = path.join(configPath, 'environments', app.get('environment'));
   var initializersPath = path.join(configPath, 'initializers');
 
   app.locals.ENV = {};
@@ -32,9 +32,6 @@ module.exports = function (app) {
   app.engine('.hbs', view.engine);
   app.set('view engine', '.hbs');
 
-  // Configure environment specific settings
-  require(environmentPath)(app);
-
   // Load initializers
   fs.readdirSync(initializersPath).forEach(function (file) {
     require(path.join(initializersPath, file))(app);
@@ -45,6 +42,8 @@ module.exports = function (app) {
   if ('development' === app.get('env')) {
     // Use Broccoli for serving and bulding assets in development (configured in Brocfile.js)
     app.use('/assets', require('broccoli-middleware'));
+    // Set up POW link
+    require('node-pow')(app);
   }
 
   app.use('/assets/*.css.gz', function (req, res, next) {
@@ -61,7 +60,8 @@ module.exports = function (app) {
 
   app.use(require('serve-favicon')(path.join(rootPath, 'public/favicon.ico')));
   app.use(express.static(path.join(rootPath, 'public')));
-  app.use(require('body-parser')());
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
   app.use(require('cookie-parser')());
   app.use(require('method-override')());
 
