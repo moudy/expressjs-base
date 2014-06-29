@@ -7,9 +7,9 @@ echo "Set LOCAL_DB_NAME variable to sync, exiting..."; exit
 MONGOLAB_URI=$(heroku config | grep MONGOLAB_URI | awk '{ print $2}' | awk -F// '{print $2}')
 
 # Extract a bunch of info from the URI
-HEROKU_APP_NAME=$(echo "$MONGOLAB_URI" | awk -F: '{print $1}')
+HEROKU_APP_NAME=$(echo "$MONGOLAB_URI" | awk -F/ '{print $2}')
 DB_PASSWORD=$(echo "$MONGOLAB_URI" | awk -F: '{print $2}' | awk -F. '{print $1}' | awk -F@ '{print $1}')
-DB_USERNAME="$HEROKU_APP_NAME"
+DB_USERNAME=$(echo "$MONGOLAB_URI" | awk -F: '{print $1}')
 DB_HOST=$(echo "$MONGOLAB_URI" | awk -F@ '{print $2}' | awk -F/ '{print $1}')
 
 # Pull down the remote data
