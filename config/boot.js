@@ -17,14 +17,12 @@ module.exports = function (app) {
   var configPath = path.join(rootPath, 'config');
   var initializersPath = path.join(configPath, 'initializers');
 
-  app.locals.ENV = {};
-  app.locals.ENV[app.get('env')] = true;
   app.set('ASSETS', fs.readdirSync(assetsPath));
 
   logger.warn('Configure `title` in "%s"', __filename);
   app.set('title', 'expressjs-base');
   app.set('port', env.PORT);
-  app.set('ASSET_HOST', env.ASSET_HOST);
+  app.set('assetHost', env.ASSET_HOST);
   app.set('host', env.HOST);
 
   // Setup view path and engine
@@ -69,6 +67,12 @@ module.exports = function (app) {
     app.use(require('morgan')('dev'));
     app.use(require('errorhandler')());
   }
+
+  app.use(function (req, res, next) {
+    res.locals.ENV = {};
+    res.locals.ENV[app.get('env')] = true;
+    next();
+  });
 
   var router = projectRouter.map(require('./routes'));
 

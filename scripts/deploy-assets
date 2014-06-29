@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
-if (!process.env.AWS_ACCESS_KEY || !process.env.AWS_SECRET_KEY) {
+var env = process.env;
+
+if (!env.AWS_ACCESS_KEY || !env.AWS_SECRET_KEY || !env.AWS_BUCKET) {
   console.log('Not deploying assets. No AWS credentials found.');
   process.exit();
 }
@@ -12,21 +14,23 @@ var client = s3.createClient({
 , s3RetryCount: 3
 , s3RetryDelay: 1000
 , s3Options: {
-    accessKeyId: process.env.AWS_ACCESS_KEY
-  , secretAccessKey: process.env.AWS_SECRET_KEY
+    accessKeyId: env.AWS_ACCESS_KEY
+  , secretAccessKey: env.AWS_SECRET_KEY
   }
 });
 
 var fs = require('fs');
 var path = require('path');
 
+var assetsPath = 'public/assets';
+
 function upload (filename) {
-  var file = path.join('public/assets', filename);
+  var file = path.join(assetsPath, filename);
 
   var params = {
      localFile: file
   ,  s3Params: {
-      Bucket: 'expressjs-base'
+      Bucket: env.AWS_BUCKET
     , Key: 'assets/'+filename
     , ACL: 'public-read'
     }
@@ -42,5 +46,5 @@ function upload (filename) {
   uploader.on('end', function() { console.log('Done uploading asset:', filename); });
 }
 
-fs.readdirSync('public/assets').forEach(upload);
+fs.readdirSync(assetsPath).forEach(upload);
 
