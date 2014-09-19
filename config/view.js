@@ -1,4 +1,4 @@
-var exphbs = require('express3-handlebars');
+var exphbs = require('express-handlebars');
 var handlebars = require('handlebars');
 var helpers = require('../lib/handlebars-helpers');
 

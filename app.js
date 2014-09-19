@@ -10,7 +10,7 @@ var app = exports.app = require('express')();
 try {
   require('./config/boot')(app);
 } catch(e) {
-  logger.error(e.message, e);
+  logger.error(e.message, e.stack);
 }
 
 // Only start app if it's not required by another module (i.e. testing or mounting)
